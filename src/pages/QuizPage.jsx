@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useQuizGameManager } from "../hooks/useQuizGameManager";
 import "../styles/loader.css";
 import { useLocation } from "react-router-dom";
@@ -11,7 +11,7 @@ function QuizPage() {
 
   const getAnswerOptions = () => {
     if (currentQuestion.type === "boolean") {
-      return ["True", "False"];
+      return ["☓", "✔"];
     } else {
       return [...currentQuestion.incorrect_answers, currentQuestion.correct_answer].sort(() => Math.random() - 0.5);
     }
@@ -73,51 +73,54 @@ function QuizPage() {
 
   return (
     <div className="flex flex-col h-screen max-h-screen overflow-hidden">
-      <div className="flex-shrink-0 p-4 border-b bg-white shadow-sm">
-        <h2 className="text-xl font-semibold text-center">
-          {currentQuestion.title}
-        </h2>
-      </div>
 
       <div className="flex-1 flex flex-col min-h-0">
-        <div className="flex-shrink-0 p-6">
+        <div className="flex-shrink-0">
           <div
-            className="text-lg leading-relaxed min-h-[4rem] max-h-32 overflow-y-auto"
+            className="text-2xl leading-relaxed min-h-[6rem] max-h-64 overflow-y-auto justify-center flex items-center"
             dangerouslySetInnerHTML={{ __html: currentQuestion.question }}
           />
         </div>
 
-        <div className="flex-1 px-6 pb-6">
-          <div className="grid gap-3 h-full content-start">
-            {getAnswerOptions().map((answer, idx) => {
-              const lowerAnswer = answer.toLowerCase();
-              const colorClass =
-                currentQuestion.type === "boolean"
-                  ? lowerAnswer === "true"
-                    ? "bg-green-100 border-green-400 hover:bg-green-200"
-                    : "bg-red-100 border-red-400 hover:bg-red-200"
-                  : "border-gray-300 hover:bg-blue-100 hover:border-blue-400";
+        <div className="flex h-full w-full justify-center pt-8 pb-16 pr-32 pl-32">
+          {currentQuestion.type === "boolean" ? (
+            <div className="flex w-full gap-32">
+              {getAnswerOptions().map((answer, idx) => {
+                const isTrue = answer.toLowerCase() === "✔";
 
-              return (
+                const baseClasses = "px-4 py-2 rounded font-semibold transition duration-200";
+                const colorClass = isTrue
+                  ? `${baseClasses} bg-green-600 hover:bg-green-700 text-white border border-green-500`
+                  : `${baseClasses} bg-red-500 hover:bg-red-700 text-white border border-red-400`;
+
+                return (
+                  <button
+                    key={idx}
+                    className={`flex-1 text-center border-2 rounded-lg transition-all duration-200 min-h-[4rem] text-9xl ${colorClass}`}
+                    onClick={() => answerQuestion(answer)}
+                    dangerouslySetInnerHTML={{ __html: answer }}
+                  />
+                );
+              })}
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 gap-4 w-full h-full">
+              {getAnswerOptions().map((answer, idx) => (
                 <button
                   key={idx}
-                  className={`p-4 text-left border-2 rounded-lg transition-all duration-200 min-h-[3rem] ${colorClass}`}
+                  className="quiz-answer-btn p-4 text-center border-2 rounded-lg transition-all duration-200 min-h-[5rem] text-base font-medium border-gray-300 bg-primaryContainer hover:bg-primaryContainerAlt"
                   onClick={() => answerQuestion(answer)}
                   dangerouslySetInnerHTML={{ __html: answer }}
                 />
-              );
-            })}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
+
       </div>
 
-      <div className="flex-shrink-0 p-4 border-t bg-gray-50">
-        <div className="flex justify-between items-center mb-2">
-          <span className="text-sm text-gray-600">
-            Progresso: {currentIndex} / {total}
-          </span>
-        </div>
-        <div className="w-full bg-gray-200 rounded-full h-2">
+      <div className="flex-shrink-0  ">
+        <div className="w-full rounded-full h-2">
           <div
             className="bg-blue-600 h-2 rounded-full transition-all duration-300"
             style={{ width: `${(currentIndex / total) * 100}%` }}

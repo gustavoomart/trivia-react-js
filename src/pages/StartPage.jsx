@@ -4,7 +4,7 @@ import { DIFFICULTIES, QUESTION_TYPES, fetchCategories } from "../services/trivi
 import ReactLogo from '../assets/react.svg';
 function StartPage() {
   const navigate = useNavigate();
-  const SELECT_STYLE = "border border-white w-full rounded-sm pt-1 pb-1 pl-2"
+  const SELECT_STYLE = "border-b border-outline w-full rounded-sm pt-1 pb-1 pl-2"
   const [amount, setAmount] = useState(5);
   const [difficulty, setDifficulty] = useState("");
   const [category, setCategory] = useState("");
@@ -38,13 +38,13 @@ function StartPage() {
 
   return (
     <div className="h-screen w-screen flex flex-col justify-center items-center">
-      <div className="bg-black p-8 rounded-3xl space-y-4">
+      <div className="bg-primaryContainer p-8 rounded-3xl space-y-4">
         <div className="flex flex-col items-center">
           <h1 className="flex items-center gap-2 text-2xl font-bold">
             🧠 Quiz React
             <img src={ReactLogo} alt="React Logo" className="ml-4 w-12 h-12" />
           </h1>
-          <p className="text-sm text-gray-500">Configure seu quiz personalizado</p>
+          <p className=" text-sm text-gray-500">Configure seu quiz personalizado</p>
         </div>
 
 
@@ -137,7 +137,7 @@ function StartPage() {
           <div className="flex flex-col items-center mt-4">
             <button
               type="button"
-              className="w-full"
+              className="w-full bg-primary hover:bg-primaryAlt rounded-2xl p-2"
               onClick={handleStart}
             >
               🚀 Iniciar Quiz
