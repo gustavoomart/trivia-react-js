@@ -5,7 +5,7 @@ import ResultPage from "./pages/ResultPage";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/trivia-react-js">
       <Routes>
         <Route path="/" element={<StartPage />} />
         <Route path="/quiz" element={<QuizPage />} />
