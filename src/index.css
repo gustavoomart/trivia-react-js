@@ -2,11 +2,11 @@
 
 @theme {
   --color-primary: #400032;
-  --color-secondary: #00313F;
   --color-primaryAlt: rgba(255, 0, 200, 0.6);
+  --color-secondary: #00313F;
+  --color-secondaryAlt: #005268;
   --color-primaryContainer: #171717;
   --color-primaryContainerAlt: #202020;
-  --color-outline: rgb(0, 0, 0);
 }
 
 :root {

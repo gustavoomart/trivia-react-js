@@ -4,7 +4,7 @@ import { DIFFICULTIES, QUESTION_TYPES, fetchCategories } from "../services/trivi
 import ReactLogo from '../assets/react.svg';
 function StartPage() {
   const navigate = useNavigate();
-  const SELECT_STYLE = "border-b border-outline w-full rounded-sm pt-1 pb-1 pl-2"
+  const SELECT_STYLE = "bg-primary border-b border-outline w-full rounded-sm pt-1 pb-1 pl-2"
   const [amount, setAmount] = useState(5);
   const [difficulty, setDifficulty] = useState("");
   const [category, setCategory] = useState("");
@@ -44,14 +44,14 @@ function StartPage() {
             🧠 Quiz React
             <img src={ReactLogo} alt="React Logo" className="ml-4 w-12 h-12" />
           </h1>
-          <p className=" text-sm text-gray-500">Configure seu quiz personalizado</p>
+          <p className=" text-sm text-gray-500">Configure your custom quiz</p>
         </div>
 
 
         <div className="space-y-2">
           <div>
             <label>
-              Quantidade de Perguntas
+              Number of Questions
             </label>
             <input
               type="number"
@@ -66,19 +66,19 @@ function StartPage() {
 
           <div>
             <label>
-              Dificuldade
+              Difficulty
             </label>
             <select
               className={SELECT_STYLE}
               value={difficulty}
               onChange={(e) => setDifficulty(e.target.value)}
             >
-              <option value="">🎯 Qualquer</option>
+              <option value="">🎯 Any</option>
               {Object.values(DIFFICULTIES).map((level) => (
                 <option key={level} value={level}>
-                  {level === 'easy' && '😊 Fácil'}
-                  {level === 'medium' && '🤔 Médio'}
-                  {level === 'hard' && '🔥 Difícil'}
+                  {level === 'easy' && '😊 Easy'}
+                  {level === 'medium' && '🤔 Medium'}
+                  {level === 'hard' && '🔥 Hard'}
                   {!['easy', 'medium', 'hard'].includes(level) && level}
                 </option>
               ))}
@@ -87,12 +87,12 @@ function StartPage() {
 
           <div>
             <label>
-              Categoria
+              Category
             </label>
             {loadingCategories ? (
               <div>
                 <div></div>
-                <span>Carregando categorias...</span>
+                <span>Loading categories...</span>
               </div>
             ) : error ? (
               <p>
@@ -104,7 +104,7 @@ function StartPage() {
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
               >
-                <option value="">📚 Qualquer</option>
+                <option value="">📚 Any</option>
                 {categories.map((cat) => (
                   <option key={cat.id} value={cat.id}>
                     {cat.name}
@@ -116,18 +116,18 @@ function StartPage() {
 
           <div>
             <label>
-              Tipo de Pergunta
+              Type of Quiz
             </label>
             <select
               className={SELECT_STYLE}
               value={type}
               onChange={(e) => setType(e.target.value)}
             >
-              <option value="">❓ Qualquer</option>
+              <option value="">❓ Any</option>
               {Object.values(QUESTION_TYPES).map((t) => (
                 <option key={t} value={t}>
-                  {t === 'multiple' && '🔤 Múltipla Escolha'}
-                  {t === 'boolean' && '✅ Verdadeiro/Falso'}
+                  {t === 'multiple' && '🔤 Multiple choice'}
+                  {t === 'boolean' && '✅ True/False'}
                   {!['multiple', 'boolean'].includes(t) && t}
                 </option>
               ))}
@@ -140,13 +140,14 @@ function StartPage() {
               className="w-full bg-primary hover:bg-primaryAlt rounded-2xl p-2"
               onClick={handleStart}
             >
-              🚀 Iniciar Quiz
-            </button></div>
+              🚀 START
+            </button>
+          </div>
         </div>
 
         <div className="flex flex-col items-center ">
           <p className="text-xs text-gray-500">
-            Teste seus conhecimentos com perguntas personalizadas
+            Test your knowledge with personalized questions
           </p>
         </div>
       </div>
