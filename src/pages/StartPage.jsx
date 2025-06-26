@@ -37,7 +37,7 @@ function StartPage() {
   };
 
   return (
-    <div className="h-screen w-screen flex flex-col justify-center items-center">
+    <div className="h-screen w-screen flex flex-col justify-center items-center p-4">
       <div className="bg-primaryContainer p-8 rounded-3xl space-y-4">
         <div className="flex flex-col items-center">
           <h1 className="flex items-center gap-2 text-2xl font-bold">

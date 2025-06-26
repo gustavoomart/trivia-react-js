@@ -1,4 +1,4 @@
-import { useLocation, useSearchParams, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "../styles/circular-progress.css";
 
 function ResultPage() {
