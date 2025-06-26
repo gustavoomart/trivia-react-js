@@ -77,12 +77,13 @@ function QuizPage() {
       <div className="flex-1 flex flex-col min-h-0">
         <div className="flex-shrink-0">
           <div
-            className="text-2xl leading-relaxed min-h-[6rem] max-h-64 overflow-y-auto justify-center flex items-center"
+            className="text-2xl leading-relaxed min-h-[6rem] max-h-64 overflow-y-auto justify-center flex items-center p-4"
             dangerouslySetInnerHTML={{ __html: currentQuestion.question }}
           />
         </div>
 
-        <div className="flex h-full w-full justify-center pt-8 pb-16 pr-32 pl-32">
+        <div className="flex h-full w-full justify-center pt-8 pb-16 px-4 sm:px-4 md:px-8 lg:px-16">
+
           {currentQuestion.type === "boolean" ? (
             <div className="flex w-full gap-32">
               {getAnswerOptions().map((answer, idx) => {
@@ -102,7 +103,7 @@ function QuizPage() {
               })}
             </div>
           ) : (
-            <div className="grid grid-cols-2 gap-4 w-full h-full">
+            <div className="grid grid-cols-2 gap-8 w-full h-full">
               {getAnswerOptions().map((answer, idx) => (
                 <button
                   key={idx}
